@@ -1,0 +1,22 @@
+{
+    "name": "sjaakp/yii2-timeline",
+    "description": "Simile Timeline widget for Yii2.",
+    "keywords": ["yii", "yii2", "extension", "widget", "timeline"],
+    "type": "yii2-extension",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Sjaak Priester",
+            "email": "sjaak@sjaakpriester.nl",
+            "homepage": "http://sjaakpriester.nl"
+        }
+    ],
+    "require": {
+        "yiisoft/yii2": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "sjaakp\\timeline\\": ""
+        }
+    }
+}
