@@ -5,7 +5,7 @@ YII2 Timeline
 
 Timeline widget renders a Javascript Simile Timeline,  version 2.3.1. The Event data for the timeline are provided by a Yii DataProvider (any object implementing [yii\data\DataProviderInterface](http://www.yiiframework.com/doc-2.0/yii-data-dataproviderinterface.html)).
 
-A demonstration of Timeline widget is here.
+A demonstration of Timeline widget is [here](http://www.sjaakpriester.nl/software/timeline).
 
 A little more about the Simile Timeline plus some demo's can be found here: [http://www.simile-widgets.org/timeline/](http://www.simile-widgets.org/timeline/). **Caution:** the information is very sketchy, and often contradictory or plainly wrong. Simile Timeline's code is more than eight years old and seems to be abandoned for a long time. It isn't even completed: lots and lots of more or less documented features simply are unimplemented. Nevertheless, the Simile Timeline is a great concept and the core code appears to be running quite well. **Timeline** widget only uses the well proven parts of Simile Timeline and doesn't touch the many loose ends.
 
@@ -122,6 +122,7 @@ A Band is defined by the Timeline method `band()`.
 	- `Timeline::CENTURY`
 	- `Timeline::MILLENNIUM`
 - **intervalPixels**: the width of one division on the horizontal scale in pixels
+- **multiple** (optional): modifies the horizontal scale division to multiples of the unit 
 
 #### zones ####
 
