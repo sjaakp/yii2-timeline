@@ -127,7 +127,7 @@ class Timeline extends Widget {
         $tData = array_map(function($model) {
             /** @var $model \yii\base\Model */
             $modelAtts = array_filter($model->getAttributes(array_values($this->attributes)), function($att) {
-                return ! is_null($att);
+                return ! empty($att);
             });
             $v = [];
             foreach($this->attributes as $tname => $mname)  {
@@ -158,8 +158,8 @@ class Timeline extends Widget {
             $js .= "{$id}m.timeline_stop=$end;";
         }
 
-        $js .= "var {$id}r=null,{$id}=Timeline.create(document.getElementById('$id'),jQuery.extend(true,$jBands,$jSyncs)).finishedEventLoading();
-jQuery(window).resize(function(){if(!{$id}r){{$id}r=setTimeout(function(){{$id}r=null;{$id}.layout();},500);}});";
+        $js .= "var {$id}r=null,{$id}t=Timeline.create(document.getElementById('$id'),jQuery.extend(true,$jBands,$jSyncs));{$id}t.finishedEventLoading();
+jQuery(window).resize(function(){if(!{$id}r){{$id}r=setTimeout(function(){{$id}r=null;{$id}t.layout();},500);}});";
 
         $view->registerJs($js);
 
