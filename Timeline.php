@@ -159,7 +159,7 @@ class Timeline extends Widget {
         }
 
         $js .= "var {$id}r=null,{$id}t=Timeline.create(document.getElementById('$id'),jQuery.extend(true,$jBands,$jSyncs));{$id}t.finishedEventLoading();
-jQuery(window).resize(function(){if(!{$id}r){{$id}r=setTimeout(function(){{$id}r=null;{$id}t.layout();},500);}});";
+jQuery(window).resize(function(){if(!{$id}r){ {$id}r=setTimeout(function(){ {$id}r=null;{$id}t.layout();},500);}});";
 
         $view->registerJs($js);
 
