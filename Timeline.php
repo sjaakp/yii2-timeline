@@ -50,8 +50,8 @@ class Timeline extends Widget {
     const CENTURY        = 9;
     const MILLENNIUM     = 10;
 
-    // useful to retrieve alternative pin icons
-    const IMG_PREFIX = 'http://api.simile-widgets.org/timeline/2.3.1/images/';
+    // useful to retrieve alternative pin icons; v. 1.0: changed to https
+    const IMG_PREFIX = 'https://api.simile-widgets.org/timeline/2.3.1/images/';
 
     /**
      * @var \yii\data\DataProviderInterface the data provider for the timeline. This property is required.
@@ -118,9 +118,9 @@ class Timeline extends Widget {
         }
     }
 
-    public function run()   {
+    public function run()   {   // v. 1.0 changed to https
         $view = $this->getView();
-        $view->registerJsFile('http://api.simile-widgets.org/timeline/2.3.1/timeline-api.js', [
+        $view->registerJsFile('https://api.simile-widgets.org/timeline/2.3.1/timeline-api.js', [
             'position' => View::POS_HEAD        // important; see: https://code.google.com/p/simile-widgets/issues/detail?id=258
         ]);
 
@@ -227,13 +227,13 @@ jQuery(window).resize(function(){if(!{$id}r){ {$id}r=setTimeout(function(){ {$id
     }
     
     protected function dateToJs($val) {
+        if (is_string($val)) $val = strtotime($val);  // new, convert in the next step; thanks to arjenmeijer.
         if (is_a($val, 'DateTime')) {
             /** @var $val DateTime */
             $val = $val->format('U') . '000';  // Javascript Date has value in milliseconds
         }
         else if (is_array($val)) $val = implode(',', $val);
         else if (is_numeric($val)) $val .= '000';
-        else if (is_string($val)) $val = "'$val'";
-        return new JsExpression("new Date($val)");;
+        return new JsExpression("new Date($val)");
     }
 }
