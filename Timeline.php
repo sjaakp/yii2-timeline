@@ -1,7 +1,7 @@
 <?php
 /**
  * MIT licence
- * Version 1.0
+ * Version 1.01
  * Sjaak Priester, Amsterdam 06-12-2014.
  *
  * Timeline Widget for Yii 2.0
@@ -10,8 +10,8 @@
  *
  * Timeline widget renders a Simile Timeline, displaying Event data from a DataProvider.
  *
- * http://www.simile-widgets.org/timeline/
- * https://code.google.com/p/simile-widgets/source/browse/#svn%2Ftimeline%2Ftags%2F2.3.1%2Fsrc%2Fwebapp%2Fapi%2Fscripts
+ * @link http://www.simile-widgets.org/timeline/
+ * @link https://github.com/simile-widgets/ancient-simile-widgets
  *
  */
 
@@ -31,6 +31,7 @@ use yii\base\Widget;
 use yii\base\InvalidConfigException;
 use yii\web\View;
 use yii\web\JsExpression;
+use yii\web\JqueryAsset;
 use yii\helpers\Html;
 use yii\helpers\Json;
 use \DateTime;
@@ -120,9 +121,14 @@ class Timeline extends Widget {
 
     public function run()   {   // v. 1.0 changed to https
         $view = $this->getView();
-        $view->registerJsFile('https://api.simile-widgets.org/timeline/2.3.1/timeline-api.js', [
-            'position' => View::POS_HEAD        // important; see: https://code.google.com/p/simile-widgets/issues/detail?id=258
-        ]);
+
+        /** First, load simile-ajax-api separately. Otherwise, timeline-api tries to load it, but it does so using the http-scheme and fails under https.
+           Note: timeline-api tries to load version 2.2.1 of simile-ajax-api; 2.2.3 is the newest
+           Note 2: POS_HEAD is essential;
+         * @link https://code.google.com/p/simile-widgets/issues/detail?id=258
+         */
+        $view->registerJsFile("//api.simile-widgets.org/ajax/2.2.3/simile-ajax-api.js", [ 'depends' => [JqueryAsset::className() ]]);
+        $view->registerJsFile('//api.simile-widgets.org/timeline/2.3.1/timeline-api.js', [ 'position' => View::POS_HEAD ]);
 
         $tData = array_map(function($model) {
             /** @var $model \yii\base\Model */
@@ -135,6 +141,7 @@ class Timeline extends Widget {
             }
             $v = $this->handleDates($v, ['start', 'end', 'latestStart', 'earliestEnd']);
             if (isset($v['end'])) $v['durationEvent'] = true;
+            if (isset($v['id']) && is_int($v['id'])) $v['id'] = strval($v['id']);   // id has to be string; timeline-api trims it
             $jv = Json::encode($v);
             return new JsExpression("new Timeline.DefaultEventSource.Event($jv)");
         }, $this->dataProvider->getModels());
