@@ -127,7 +127,7 @@ class Timeline extends Widget {
            Note 2: POS_HEAD is essential;
          * @link https://code.google.com/p/simile-widgets/issues/detail?id=258
          */
-        $view->registerJsFile("//api.simile-widgets.org/ajax/2.2.3/simile-ajax-api.js", [ 'depends' => [JqueryAsset::className() ]]);
+        $view->registerJsFile("//api.simile-widgets.org/ajax/2.2.3/simile-ajax-api.js", [ 'depends' => [JqueryAsset::class ]]);
         $view->registerJsFile('//api.simile-widgets.org/timeline/2.3.1/timeline-api.js', [ 'position' => View::POS_HEAD ]);
 
         $tData = array_map(function($model) {
