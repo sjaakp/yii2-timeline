@@ -7,7 +7,7 @@ Timeline widget renders a Javascript Simile Timeline,  version 2.3.1. The Event 
 
 A demonstration of Timeline widget is [here](https://www.sjaakpriester.nl/software/timeline).
 
-A little more about the Simile Timeline plus some demo's can be found here: [http://www.simile-widgets.org/timeline/](http://www.simile-widgets.org/timeline/). **Caution:** the information is very sketchy, and often contradictory or plainly wrong. Simile Timeline's code is more than eight years old and seems to be abandoned for a long time. It isn't even completed: lots and lots of more or less documented features simply are unimplemented. Nevertheless, the Simile Timeline is a great concept and the core code appears to be running quite well. **Timeline** widget only uses the well proven parts of Simile Timeline and doesn't touch the many loose ends.
+A little more about the Simile Timeline plus some demo's can be found here: [http://www.simile-widgets.org/timeline/](http://www.simile-widgets.org/timeline/). **Caution:** the information is very sketchy, and often contradictory or plainly wrong. Simile Timeline's code is more than twelve years old and seems to be abandoned for a long time. It isn't even completed: lots and lots of more or less documented features simply are unimplemented. Nevertheless, the Simile Timeline is a great concept and the core code appears to be running quite well. **Timeline** widget only uses the well proven parts of Simile Timeline and doesn't touch the many loose ends.
 
 ## Installation ##
 
@@ -17,7 +17,7 @@ The preferred way to install **Timeline** is through [Composer](https://getcompo
 
 Or run:
 
-`$ php composer.phar require sjaakp/yii2-timeline "*"` 
+`composer require sjaakp/yii2-timeline "*"` 
 
 You can manually install **Timeline** by [downloading the source in ZIP-format](https://github.com/sjaakp/yii2-timeline/archive/master.zip).
 
@@ -89,7 +89,7 @@ Timeline has the following options:
 - **height**: height of Timeline. Default: 200. Can have these values:
  - `integer` height in pixels
  - `string` valid CSS height (f.i. in ems)
- - `false` height is not set; caution: the height MUST be set by some other means (CSS), otherwise Timeline will not appear.
+ - `false` height is not set; **caution:** the height MUST be set by some other means (CSS), otherwise Timeline will not appear.
 - **start** (optional): start date
 - **end** (optional): end date
 - **center** (optional): initial position of Timeline
@@ -107,7 +107,7 @@ A Band is defined by the Timeline method `band()`.
 
 `$options` is an array with the following keys:
 
-- **width**: the part of Timeline occupied by this band, as a percentage or another CSS3 dimension (yes, you're right: 'height' would be a more proper name, but this is how Simile Timiline defines it),
+- **width**: the part of Timeline occupied by this band, as a percentage or another CSS3 dimension (yes, you're right: 'height' would be a more proper name, but this is how Simile Timeline defines it),
 - **layout**: the only sensible value is 'overview'; 'detailed' will also work, but seems to be very buggy; all other values (including none) default to 'compact', which is the layout of the main band
 - **intervalUnit**: the time unit that divides the horizontal scale of the Band. The value should be one of the following unit constants (yes, Timeline has an astonishing range!):
 	- `Timeline::MILLISECOND`
@@ -172,7 +172,7 @@ Some of the other Event attributes are:
 
 - **caption**: the text of the tooltip
 - **description**: the text appearing in the pop-up 'bubble'.
-- **icon**: the URL of the pin icon (only for Instant Events.
+- **icon**: the URL of the pin icon (only for Instant Events).
 - **color**
 - **textColor**
 - **link**: modifies the heading of the pop-up bubble to a link with this href.
